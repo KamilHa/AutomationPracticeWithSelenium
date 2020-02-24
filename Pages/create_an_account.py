@@ -10,7 +10,7 @@ class CreateAccountByPuttingEmail:
     EMAIL_INPUT_TO_CREATE = (By.ID, 'email_create')
     EMAIL_BUTTON_TO_CREATE = (By.ID, 'SubmitCreate')
 
-    # Already registered? ??
+    # Already registered?
     EMAIL_INPUT_TO_SIGN_IN = (By.ID, 'email')
     PASSWORD_INPUT_TO_SIGN_IN = (By.ID, 'passwd')
     EMAIL_BUTTON_TO_SIGN_IN = (By.ID, 'SubmitLogin')
