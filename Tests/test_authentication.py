@@ -2,6 +2,7 @@ import pytest
 
 from Pages.create_an_account import CreateAccountByPuttingEmail
 from Pages.put_personal_information import YourPersonalInformation
+from Pages.header import AccountInfo
 from selenium.webdriver import Firefox
 
 User1 = {
@@ -51,9 +52,12 @@ def test_log_in(browser):
     create_an_account_page.load()
 
     # check if a user is logged if not log in
-    #
+
     #
 
     create_an_account_page.log_in(User2)
-    # check again
+    simple_check = AccountInfo(browser)
+    wynik = simple_check.check_if_the_user_is_logged(User2)
+
+    # check again/html/body/div/div[1]/header/div[2]/div/div/nav/div[3]
 
