@@ -25,39 +25,45 @@ User1 = {
 
 User2 = {"v_first_name": "Kamil", "v_last_name": "Testowy", "v_email": "kamil@o2.pl", "v_password": "secret22"}
 
+
 @pytest.fixture
 def browser():
     driver = Firefox()
     driver.implicitly_wait(20)
     yield driver
-    #driver.quit()
+    driver.quit()
 
-'''
-def test_basic_register(browser):
+
+def test_log_IN_log_OUT(browser, user = User2):
+    create_an_account_page = CreateAccountByPuttingEmail(browser)
+    create_an_account_page.load()
+
+    create_a_header_page = AccountInfo(browser)
+
+    # a user should not be logged in
+    assert False == create_a_header_page.check_if_the_user_is_logged()
+
+    # log in
+    create_an_account_page.log_in(User2)
+
+    # a user should be logged in
+    assert True == create_a_header_page.check_if_the_user_is_logged()
+
+    # log out
+    create_a_header_page.log_out()
+
+    # a user should be again logged out
+    assert False == create_a_header_page.check_if_the_user_is_logged()
+
+
+def test_basic_register(browser, user = User1):
 
     create_an_account_page = CreateAccountByPuttingEmail(browser)
     create_an_account_page.load()
-    create_an_account_page.register(User1.get("v_email"))
+    create_an_account_page.register(user.get("v_email"))
 
     put_personal_information_page = YourPersonalInformation(browser)
-    put_personal_information_page.add_basic_information(User1)
+    put_personal_information_page.add_basic_information(user)
 
-    file = open('log.txt', 'w')
-    file.write(browser.current_url)
-    file.close()
-'''
 
-def test_log_in(browser):
-    create_an_account_page = CreateAccountByPuttingEmail(browser)
-    create_an_account_page.load()
-
-    # check if a user is logged if not log in
-
-    #
-
-    create_an_account_page.log_in(User2)
-    simple_check = AccountInfo(browser)
-    wynik = simple_check.check_if_the_user_is_logged(User2)
-
-    # check again/html/body/div/div[1]/header/div[2]/div/div/nav/div[3]
 

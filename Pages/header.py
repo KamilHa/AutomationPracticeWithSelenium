@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 
 class AccountInfo:
@@ -10,9 +11,16 @@ class AccountInfo:
     def __init__(self, browser):
         self.browser = browser
 
-    def check_if_the_user_is_logged(self, user):
-        user_info = self.browser.find_element(*self.ACCOUNT_NAME)
-        uss = user.get("v_first_name") + " " + user.get("v_last_name")
-        return True if user_info.text.equals(uss) else False
+    def check_if_the_user_is_logged(self):
 
+        try:
+            user_info = self.browser.find_element(*self.SIGN_OUT)
+        except:
+            print("User is not logged")
+            user_info = False
 
+        return True if user_info else False
+
+    def log_out(self):
+        logout = self.browser.find_element(*self.SIGN_OUT)
+        logout.click()
