@@ -44,7 +44,7 @@ def test_log_IN_log_OUT(browser, user = User2):
     assert False == create_a_header_page.check_if_the_user_is_logged()
 
     # log in
-    create_an_account_page.log_in(User2)
+    create_an_account_page.log_in(user)
 
     # a user should be logged in
     assert True == create_a_header_page.check_if_the_user_is_logged()
