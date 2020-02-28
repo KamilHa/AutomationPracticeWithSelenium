@@ -19,7 +19,7 @@ class AccountInfo:
             print("User is not logged")
             user_info = False
 
-        return True if user_info else False
+        return user_info
 
     def log_out(self):
         logout = self.browser.find_element(*self.SIGN_OUT)
