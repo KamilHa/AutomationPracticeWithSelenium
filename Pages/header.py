@@ -12,7 +12,7 @@ class AccountInfo:
         self.browser = browser
 
     def check_if_the_user_is_logged(self):
-
+        # need to find a better way to return the right status
         try:
             user_info = self.browser.find_element(*self.SIGN_OUT)
         except:
